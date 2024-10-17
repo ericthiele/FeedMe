@@ -1,5 +1,5 @@
 # FeedMe
-This is my response to the Engineering Challenge - https://github.com/peck/engineering-assessment?tab=readme-ov-file
+This is my response to the [Engineering Challenge](https://github.com/peck/engineering-assessment?tab=readme-ov-file)
 
 Reviewing the links supplied at the bottom of the challenge, 
 I noticed that the page at https://data.sfgov.org/Economy-and-Community/Mobile-Food-Facility-Permit/rqzj-sfat/data 
@@ -31,13 +31,21 @@ I've never written a mobile app, this is a stretch goal.
 I'm going to use:
 - MacBook Pro
 - python
+- pip
 - React Native
+- plotly library to plot points on a map
 - target iPhones initially, so using Xcode
 
 # Getting Started
 
-- Setup your local Dev environment
-  - Install Homebrew if you haven't already\
-  `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
-  - Install Nodejs\
-  `brew install node`
+- Running `make`:
+  - will set up your local Dev environment
+  - build the app
+  - launch the app in the iPhone simulator
+
+- Setting up your local Dev environment includes
+  - Installs **Homebrew** on a Mac, if you haven't already\
+  - Installs **Nodejs**\
+  - Installs **React-Native-CLI**
+  - Installs **python**, **pip**, **plotly**
+  - Installs **watchman** on a Mac, which I hear is handy for debugging Nodejs apps
