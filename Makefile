@@ -4,6 +4,8 @@ CHECK_BREW := brew --version
 CHECK_PYTHON := python3 --version
 CHECK_PIP := pip3 --version
 CHECK_PLOTLY := pip3 show plotly
+CHECK_RN := react-native --version
+CHECK_WATCHMAN := watchman --version
 
 # Define installation commands
 INSTALL_NODE_LINUX := sudo apt-get update && sudo apt-get install -y nodejs
@@ -13,10 +15,12 @@ INSTALL_PYTHON_LINUX := sudo apt-get update && sudo apt-get install -y python3
 INSTALL_PYTHON_MAC := brew install python
 INSTALL_PIP_LINUX := sudo apt-get install -y python3-pip
 INSTALL_PLOTLY := pip3 install plotly
+INSTALL_RN := npm install -g react-native-cli
+INSTALL_WATCHMAN := brew install watchman
 
-.PHONY: all install_node install_brew install_python install_pip install_plotly
+.PHONY: all install_node install_brew install_python install_pip install_plotly install_rn install_watchman
 
-all: install_python install_pip install_plotly install_node
+all: install_python install_pip install_plotly install_node install_rn install_watchman
 
 install_brew:
 	@if [ "$(shell uname)" = "Darwin" ]; then \
@@ -81,4 +85,24 @@ install_node: install_brew
 		fi \
 	else \
 		echo "Node.js is already installed."; \
+	fi
+
+install_rn: install_node
+	@if ! $(CHECK_RN) > /dev/null 2>&1; then \
+		echo "React Native CLI not found. Installing..."; \
+		$(INSTALL_RN); \
+	else \
+		echo "React Native CLI is already installed."; \
+	fi
+
+install_watchman: install_brew
+	@if [ "$(shell uname)" = "Darwin" ]; then \
+		if ! $(CHECK_WATCHMAN) > /dev/null 2>&1; then \
+			echo "Watchman not found. Installing..."; \
+			$(INSTALL_WATCHMAN); \
+		else \
+			echo "Watchman is already installed."; \
+		fi \
+	else \
+		echo "Not macOS. Skipping Watchman installation."; \
 	fi
