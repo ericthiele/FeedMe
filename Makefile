@@ -10,7 +10,7 @@ CHECK_WATCHMAN := watchman --version
 # Define installation commands
 INSTALL_NODE_LINUX := sudo apt-get update && sudo apt-get install -y nodejs
 INSTALL_NODE_MAC := brew install node
-INSTALL_BREW := /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+INSTALL_BREW := /bin/bash -c "`curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh`"
 INSTALL_PYTHON_LINUX := sudo apt-get update && sudo apt-get install -y python3
 INSTALL_PYTHON_MAC := brew install python
 INSTALL_PIP_LINUX := sudo apt-get install -y python3-pip
