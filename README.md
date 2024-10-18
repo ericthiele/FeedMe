@@ -1,5 +1,5 @@
 # FeedMe
-This is my response to the [Engineering Challenge](https://github.com/peck/engineering-assessment?tab=readme-ov-file)
+This is Eric Thiele's response to the [Engineering Challenge](https://github.com/peck/engineering-assessment?tab=readme-ov-file)
 
 Reviewing the links supplied at the bottom of the challenge, 
 I noticed that the page at https://data.sfgov.org/Economy-and-Community/Mobile-Food-Facility-Permit/rqzj-sfat/data 
@@ -32,20 +32,25 @@ I'm going to use:
 - MacBook Pro
 - python
 - pip
-- React Native
-- plotly library to plot points on a map
-- target iPhones initially, so using Xcode
+- Kivy
 
 # Getting Started
 
 - Running `make`:
   - will set up your local Dev environment
-  - build the app
+    
+- Running `make run`
+  - **STILL UNDER CONTRUCTION**
   - launch the app in the iPhone simulator
 
 - Setting up your local Dev environment includes
-  - Installs **Homebrew** on a Mac, if you haven't already\
-  - Installs **Nodejs**\
-  - Installs **React-Native-CLI**
-  - Installs **python**, **pip**, **plotly**
-  - Installs **watchman** on a Mac, which I hear is handy for debugging Nodejs apps
+  - Installs **Homebrew** on a Mac, if you haven't already
+  - Installs **python**, **pip**
+  - Creates **FeedMeEnv** - a Python Virtual environment
+  - Installs **kivy-ios** in that Virtual environment - more info [here](https://kivy.org/) and [here](https://github.com/kivy/kivy-ios)
+ 
+# Pencils Down - for now...
+
+I've bitten off more than I can chew in a couple of days.
+
+I *think* this proves I have some skills.  Dunno if it's enough to "move forward" with interview process.
