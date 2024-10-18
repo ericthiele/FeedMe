@@ -1,26 +1,22 @@
 # Define commands to check installations
-CHECK_NODE := node -v
 CHECK_BREW := brew --version
 CHECK_PYTHON := python3 --version
 CHECK_PIP := pip3 --version
-CHECK_PLOTLY := pip3 show plotly
-CHECK_RN := react-native --version
-CHECK_WATCHMAN := watchman --version
 
 # Define installation commands
-INSTALL_NODE_LINUX := sudo apt-get update && sudo apt-get install -y nodejs
-INSTALL_NODE_MAC := brew install node
 INSTALL_BREW := /bin/bash -c "`curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh`"
 INSTALL_PYTHON_LINUX := sudo apt-get update && sudo apt-get install -y python3
 INSTALL_PYTHON_MAC := brew install python
 INSTALL_PIP_LINUX := sudo apt-get install -y python3-pip
-INSTALL_PLOTLY := pip3 install plotly
-INSTALL_RN := npm install -g react-native-cli
-INSTALL_WATCHMAN := brew install watchman
 
-.PHONY: all install_node install_brew install_python install_pip install_plotly install_rn install_watchman
+# Python Virtual Environment vars
+VENV_DIR := FeedMeEnv
+PYTHON = $(VENV_DIR)/bin/python
+PIP = $(VENV_DIR)/bin/pip
 
-all: install_python install_pip install_plotly install_node install_rn install_watchman
+.PHONY: all install_brew install_python create_venv install_venv run clean install_pip
+
+all: install_python create_venv install_venv install_pip
 
 install_brew:
 	@if [ "$(shell uname)" = "Darwin" ]; then \
@@ -49,6 +45,22 @@ install_python: install_brew
 		echo "Python3 is already installed."; \
 	fi
 
+create_venv: install_python
+        python3 -m venv $(VENV_DIR)
+        . $(VENV_DIR)/bin/activate
+                        
+install_venv: create_venv
+        . $(VENV_DIR)/bin/activate
+        $(PIP) install -r requirements.txt
+        
+run: all install_venv
+        . $(VENV_DIR)/bin/activate
+        $(PYTHON) feedme.py
+        deactivate
+
+clean:
+        rm -rf $(VENV_DIR)
+
 install_pip: install_python
 	@if ! $(CHECK_PIP) > /dev/null 2>&1; then \
 		echo "pip3 not found. Installing..."; \
@@ -62,47 +74,4 @@ install_pip: install_python
 		fi \
 	else \
 		echo "pip3 is already installed."; \
-	fi
-
-install_plotly: install_pip
-	@if ! $(CHECK_PLOTLY) > /dev/null 2>&1; then \
-		echo "Plotly not found. Installing..."; \
-		$(INSTALL_PLOTLY); \
-	else \
-		echo "Plotly is already installed."; \
-	fi
-
-install_node: install_brew
-	@if ! $(CHECK_NODE) > /dev/null 2>&1; then \
-		echo "Node.js not found. Installing..."; \
-		if [ "$(shell uname)" = "Linux" ]; then \
-			$(INSTALL_NODE_LINUX); \
-		elif [ "$(shell uname)" = "Darwin" ]; then \
-			$(INSTALL_NODE_MAC); \
-		else \
-			echo "Unsupported OS. Please install Node.js manually."; \
-			exit 1; \
-		fi \
-	else \
-		echo "Node.js is already installed."; \
-	fi
-
-install_rn: install_node
-	@if ! $(CHECK_RN) > /dev/null 2>&1; then \
-		echo "React Native CLI not found. Installing..."; \
-		$(INSTALL_RN); \
-	else \
-		echo "React Native CLI is already installed."; \
-	fi
-
-install_watchman: install_brew
-	@if [ "$(shell uname)" = "Darwin" ]; then \
-		if ! $(CHECK_WATCHMAN) > /dev/null 2>&1; then \
-			echo "Watchman not found. Installing..."; \
-			$(INSTALL_WATCHMAN); \
-		else \
-			echo "Watchman is already installed."; \
-		fi \
-	else \
-		echo "Not macOS. Skipping Watchman installation."; \
 	fi
