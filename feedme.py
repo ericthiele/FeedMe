@@ -1,3 +1,4 @@
+import json
 import requests
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
@@ -55,7 +56,9 @@ class MainApp(App):
         return ('Any', 'Mexican', 'Chinese', 'Italian', 'Indian')
 
     def fetch_food_truck_data(self):
-        url = "https://data.sfgov.org/Economy-and-Community/Mobile-Food-Facility-Permit/rqzj-sfat/data"  # SF food truck data API URL
+        # SF food truck data API URL, See https://dev.socrata.com/foundry/data.sfgov.org/rqzj-sfat
+        # CSV output is also available.  Replace ../json with .../csv
+        url = "https://data.sfgov.org/resource/rqzj-sfat/json"
         params = {
             'truck_type': self.truck_type_spinner.text if self.truck_type_spinner.text != 'Both' else '',
             'food_type': self.food_type_spinner.text if self.food_type_spinner.text != 'Any' else ''
