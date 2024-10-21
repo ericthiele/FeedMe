@@ -54,3 +54,25 @@ I'm going to use:
 I've bitten off more than I can chew in a couple of days.
 
 I *think* this proves I have some skills.  Dunno if it's enough to "move forward" with interview process.
+
+# My thought process...
+
+Given such an open ended challenge, and my desire to impress - I figured an interactive mobile app was definitely the way to go.
+
+- Initially thought I'd head down the NodeJS / React path.
+- Realized that was going to be WAY too steep a learning curve.
+- I searched for Python-based frameworks, and found several references to Kivy.  Why Python?  I feel stronger in Python than Elixir. Yes, I'm aware EL is an Elixir shop.
+- I did some of the basics of setting up a new GH repo, setting up my personal token at GH, setting up a Makefile to incorporate a Virtual Environment for Python
+- I cobbled together some code 
+- I found the correct API endpoint for the SF food truck data
+- And then I proceeded to fall flat on my face.  The interactive map functionality was dependent on a kivy/MapView module.  Or is it kivy_garden/Mapview?  I've spent a lot of time butting my head against this wall, of how to properly get the module installed & *visible* to my **feedme.py** app.  A bit of a rabbit hole.  Conflicting build docs.  Stack Overflow and other places weren't much help.  Then I noticed that the docs for mapview are over 2 years old.  <sigh> 
+
+Looks like I bet on the wrong stack.  Eventually, I'm sure I can be successful.  I would just have to dive fully into learning how to use Xcode to build the entire Kivy project.
+
+But it looks like that could be several more days of trial & error.
+
+I've already spent probably 16 hours without anything I'd call success.
+I *HAVE* learned things I didn't know 4 days ago.  So not a total loss.
+
+I hope we move forward.
+I won't be surprised if we don't
